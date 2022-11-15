@@ -14,6 +14,7 @@ export const MintButton = () => {
 
   const walletId = useWalletId()
   const candyMachineData = useCandyMachineData()
+  console.log({ candyMachineData })
   const gatewayToken = useGatewayToken(
     candyMachineData.data?.data.gatekeeper?.gatekeeperNetwork
   )
@@ -26,16 +27,16 @@ export const MintButton = () => {
       (p.endSeconds === 0 || UTCNow < (p.endSeconds ?? 0)) &&
       (!p.payment?.paymentMint ||
         p.payment?.paymentMint ===
-          candyMachineData.data?.tokenMint?.toString()) &&
+        candyMachineData.data?.tokenMint?.toString()) &&
       (!p.payment?.paymentAmount ||
         (p.payment?.paymentAmount ?? 0) ===
-          parseInt(candyMachineData.data?.data.price.toString() ?? '0'))
+        parseInt(candyMachineData.data?.data.price.toString() ?? '0'))
   )
   const disabled =
     !activePhase ||
     !candyMachineData.data ||
     candyMachineData.data.itemsRedeemed.toString() ===
-      candyMachineData.data.data.maxSupply.toString() ||
+    candyMachineData.data.data.maxSupply.toString() ||
     !walletId ||
     (!!candyMachineData.data?.data.gatekeeper && !isValid(gatewayToken.data)) ||
     (!!candyMachineData.data?.data.whitelistMintSettings &&

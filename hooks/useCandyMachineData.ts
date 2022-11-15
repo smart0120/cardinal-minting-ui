@@ -7,6 +7,7 @@ import { useCandyMachineId } from './useCandyMachineId'
 export const CANDY_MACHINE_DATA_KEY = 'candy-machine'
 export const useCandyMachineData = () => {
   const candyMachineId = useCandyMachineId()
+  console.log({ candyMachineId })
   const { connection } = useEnvironmentCtx()
   return useQuery(
     [CANDY_MACHINE_DATA_KEY, candyMachineId?.toString()],
